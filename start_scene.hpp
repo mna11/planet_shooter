@@ -17,7 +17,6 @@ public:
 	void setText(Text& text, Font& _font, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window);
 	void setPointBlock(RectangleShape &rect, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window);
 	bool KeyInput(Event &_event);
-	void update();
 	void draw(RenderWindow& _window);
 };
 
@@ -38,10 +37,10 @@ StartScene::StartScene(Font& _font, RenderWindow& _window)
 
 void StartScene::setText(Text& text, Font& _font, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window)
 {
-	text.setFont(_font);
+	text.setFont(_font); 
 	text.setCharacterSize(size);
-	text.setFillColor(in_color);
-	text.setOutlineColor(out_color);
+	text.setFillColor(in_color); 
+	text.setOutlineColor(out_color);  
 	text.setOutlineThickness(out_thick);
 	
 	text.setOrigin(text.getLocalBounds().left, text.getLocalBounds().top);
@@ -71,12 +70,6 @@ bool StartScene::KeyInput(Event &_event)
 	{
 		return false;
 	}
-}
-
-void StartScene::update()
-{
-	Clock clock;
-	clock.getElapsedTime();
 }
 
 void StartScene::draw(RenderWindow& _window)

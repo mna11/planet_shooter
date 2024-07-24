@@ -11,7 +11,7 @@
 
 using namespace sf;
 
-class GameScene{
+class GameScene{ // gameplay scene
 private:
 	Timer& timer;
 	GUN& player;
@@ -21,26 +21,26 @@ private:
 	bool game_start;
 public:
 	GameScene(Timer& _timer, GUN& _player, NPC_SET& npcCon, Background& _bg);
-	void keyInput(Event& _event);
-	void update(bool _game_start);
-	void draw(RenderWindow& _window);
+	void keyInput(Event& _event); // key 입력 처리 
+	void update(bool _game_start); // 화면 정보 업데이트
+	void draw(RenderWindow& _window); // window에 화면 그리기
 };
 
 GameScene::GameScene(Timer& _timer, GUN& _player, NPC_SET& _npcCon, Background& _bg)
 : timer(_timer), player(_player), npcCon(_npcCon), bg(_bg)
 { }
 
-void GameScene::keyInput(Event& _event)
-{
-	if (_event.key.code == Keyboard::A)
+void GameScene::keyInput(Event& _event) // 좌우 이동 및 발사 기능
+{	
+	if (_event.key.code == Keyboard::Left) 
 		player.moveLeft();
-	else if (_event.key.code == Keyboard::D)
+	else if (_event.key.code == Keyboard::Right)
 		player.moveRight();
 	else if (_event.key.code == Keyboard::Space)
 		player.fireBullet();
 }
 
-void GameScene::update(bool _game_start)
+void GameScene::update(bool _game_start) // game_start했을 경우에 npcCon, player의 정보값을 업데이트 해줌 
 {
 	game_start = _game_start;
 	npcCon.update();

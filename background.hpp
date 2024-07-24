@@ -4,7 +4,7 @@
 
 using namespace sf;
 
-class Background{
+class Background{ // game play scene 배경 
 private:
   Texture space_bar, space_center;
   Sprite left_back, right_back, center_back;
@@ -14,6 +14,7 @@ public:
 };
 
 Background::Background(){
+  // Texture load -> Sprite set Texture -> Sprite set Position -> draw
   space_bar.loadFromFile("asset/Space/space_bar.jpg", IntRect(0, 0, 60, 480));
   space_center.loadFromFile("asset/Space/space_center.jpg", IntRect(0, 0, 520, 480));
 
