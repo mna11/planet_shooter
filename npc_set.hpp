@@ -47,16 +47,16 @@ bool NPC_SET::checkHit(FloatRect _rect, int _texture_number)
 {
   for (auto& _e: npcs)
   {
-    if (_rect.intersects(_e.getArea()) == true && _e.checkTexture(_texture_number))
+    if (_rect.intersects(_e.getArea()) && _e.checkTexture(_texture_number)) // 맞았고, Texture도 동일할 경우
     {
-      if (_e.destroyed == true) continue; 
+      if (_e.destroyed == true) continue; // 이미 부셔저서 그리지는 않지만 그곳에 존재하는 상태이기에
       _e.destroyed = true;
-      timer.timeToString(-10);
+      timer.timeToString(-10); // -10초를 빼줌
       return true;
     }
-    else if (_rect.intersects(_e.getArea())){
+    else if (_rect.intersects(_e.getArea())){ // 맞았지만, Texture는 동일하지 않은 경우
       if (_e.destroyed == true) continue;
-      timer.timeToString(5);
+      timer.timeToString(5); // 5초를 더 해줌
   
       return true;
     }

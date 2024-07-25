@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream> 
+#define GAME_START 1
+#define MANUAL_SELECT 2
 
 using namespace sf;
 using namespace std;
@@ -12,16 +14,18 @@ private:
 	Text game_start;
 	Text game_manual;
 	RectangleShape select_point;
+	int select; // 1 - game_start_select , 2 - manual_select
 public:
 	StartScene(Font& _font, RenderWindow& window);
 	void setText(Text& text, Font& _font, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window);
 	void setPointBlock(RectangleShape &rect, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window);
-	bool KeyInput(Event &_event);
+	int KeyInput(Event &_event);
 	void draw(RenderWindow& _window);
 };
 
 StartScene::StartScene(Font& _font, RenderWindow& _window)
 {
+	select = GAME_START;
 	game_title.setString("Planet Shooter");
 	game_start.setString("Press to Start Game");
 	game_manual.setString("Press to Reading Manual");
@@ -60,16 +64,29 @@ void  StartScene::setPointBlock(RectangleShape &rect, int size, Color in_color, 
 	
 }
 
-bool StartScene::KeyInput(Event &_event)
+int StartScene::KeyInput(Event &_event)
 {
 	if (_event.key.code == Keyboard::Enter)
 	{
-		return true;
+		if (select == GAME_START) return 1;
+		if (select == MANUAL_SELECT) return 2;
 	}
-	else 
+	else if (_event.key.code == Keyboard::Down)
 	{
-		return false;
+		if (select == GAME_START) {
+			select = MANUAL_SELECT;
+			select_point.move(0, 25);
+		}
 	}
+	else if (_event.key.code == Keyboard::Up)
+	{
+		if (select == MANUAL_SELECT) {
+			select = GAME_START;
+			select_point.move(0, -25);
+		}
+	}
+	
+	return 0;
 }
 
 void StartScene::draw(RenderWindow& _window)

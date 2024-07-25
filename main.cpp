@@ -9,6 +9,10 @@
 #include "game_scene.hpp"
 #include "start_scene.hpp"
  
+#define START_Scene 0
+#define GAME_Scene 1
+#define MANUAL_Scene 2
+
 using namespace sf;
 
 int main(void)
@@ -32,18 +36,18 @@ int main(void)
 	Texture textures[3] = {Terran, Lava, Ice};
 	
 	//Fonts loading
-	Font m3x6_font;
-	m3x6_font.loadFromFile("./asset/Fonts/Silver.ttf");
+	Font silver_font;
+	silver_font.loadFromFile("./asset/Fonts/Silver.ttf");
 	
-	bool game_playing  = false;
+	int game_playing  = 0; // 0 - start _scene , 1 - game_scene , 2 - manual_scene, 4 - end_scene
 	
-	Timer timer(m3x6_font);
+	Timer timer(silver_font);
 	GUN Player(textures);
 	NPC_SET npcCon(15, textures, timer);
 	Background bg;
 	
 	GameScene gameScene(timer, Player, npcCon, bg);
-	StartScene startScene(m3x6_font, window);
+	StartScene startScene(silver_font, window);
 	
 	// Bringing thr window to life
 	while (window.isOpen()) // run the program as long as the window is open
@@ -58,14 +62,22 @@ int main(void)
 				window.close(); // window를 종료 
 				break;          // event loop를 빠져나감
 			case Event::KeyPressed: // KeyBoard input
-				if (game_playing == false) // game_playing이 아님 -> startScene임
+				if (game_playing == START_Scene) // startScene임
 				{
 					game_playing = startScene.KeyInput(event); // startScene에서 input 값을 처리함.
 					timer.clockRestart(); 
 				}
-				else if (game_playing == true) // game_playing임 -> gameScene임 
+				else if (game_playing == GAME_Scene) // gameScene임 
 				{
 					gameScene.keyInput(event); // gameScene에서 input 값을 처리함
+				}
+				else if (game_playing == MANUAL_Scene) // manualScene임
+				{
+
+				}
+				else // endScene임 
+				{
+
 				}
 				break;
 			 default:
@@ -75,12 +87,12 @@ int main(void)
 		
 
 		// scene update() -> clear() -> scene draw() -> display() 순으로 보여지는 화면 업데이트가 이뤄진다. 
-		if(game_playing == true) gameScene.update(game_playing);
+		if(game_playing == GAME_Scene) gameScene.update(game_playing);
 		
 		window.clear();
 		
-		if (game_playing == true) gameScene.draw(window);
-		else if (game_playing == false) startScene.draw(window);
+		if (game_playing == GAME_Scene) gameScene.draw(window);
+		else if (game_playing == START_Scene) startScene.draw(window);
 		
 		window.display();
 	}
