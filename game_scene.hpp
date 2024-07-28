@@ -38,6 +38,8 @@ void GameScene::keyInput(Event& _event) // 좌우 이동 및 발사 기능
 		player.moveRight();
 	else if (_event.key.code == Keyboard::Space)
 		player.fireBullet();
+	else if (_event.key.code == Keyboard::K) // test code
+		npcCon.destroyed();
 }
 
 void GameScene::update(bool _game_start) // game_start했을 경우에 npcCon, player의 정보값을 업데이트 해줌 

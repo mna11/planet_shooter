@@ -9,25 +9,27 @@ class NPC{
 private:
 	float x, y;
 	float speed;
+	float size;
 	Texture &t;
 	Texture test;
 	CircleShape npc;
 	float offset_x;
 	int texture_number;
 public:
-	NPC(float _x, float _y, float _speed, Texture &_t, int _texture_number);
+	NPC(float _x, float _y, float _speed, float _size, Texture &_t, int _texture_number);
 	void update();
 	void draw(RenderWindow& _window);
+	void setPos(Vector2f pos);
 	bool destroyed;
 	FloatRect getArea();
 	bool checkTexture(int _texture_number);
 };
 
-NPC::NPC (float _x, float _y, float _speed, Texture &_t, int _texture_number) 
-	: x(_x), y(_y), speed(_speed), t(_t), offset_x(_speed), texture_number(_texture_number), destroyed(false)
+NPC::NPC (float _x, float _y, float _speed, float _size, Texture &_t, int _texture_number) 
+	: x(_x), y(_y), speed(_speed), size(_size), t(_t), offset_x(_speed), texture_number(_texture_number), destroyed(false)
 {
 	t.setRepeated(true);
-	npc = CircleShape(15.f);
+	npc = CircleShape(size);
 	npc.setTexture(&t);
 	npc.setPosition(x, y);
 }
@@ -51,8 +53,12 @@ void NPC::update(){
 void NPC::draw(RenderWindow& _window){
   if (destroyed == true)
     return;
-    
 	_window.draw(npc);
+}
+
+void NPC::setPos(Vector2f pos){
+	npc.setPosition(pos);
+	offset_x = speed;
 }
 
 FloatRect NPC::getArea()

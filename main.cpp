@@ -3,11 +3,14 @@
 //header file
 #include "npc.hpp"
 #include "npc_set.hpp"
+#include "manual_scene_npc_set.hpp"
 #include "gun.hpp"
+#include "manual_scene_gun.hpp"
 #include "background.hpp"
 #include "Timer.hpp"
 #include "game_scene.hpp"
 #include "start_scene.hpp"
+#include "manual_scene.hpp"
  
 #define START_Scene 0
 #define GAME_Scene 1
@@ -43,11 +46,14 @@ int main(void)
 	
 	Timer timer(silver_font);
 	GUN Player(textures);
-	NPC_SET npcCon(15, textures, timer);
+	MANUAL_SCENE_GUN Mplayer(textures);
+	NPC_SET npcCon(15, 15.f, textures, timer);
+	MANUAL_SCENE_NPC_SET MnpcCon(6, 30.f, textures, timer);
 	Background bg;
 	
 	GameScene gameScene(timer, Player, npcCon, bg);
 	StartScene startScene(silver_font, window);
+	ManualScene manualScene(Mplayer, MnpcCon, silver_font, textures, window);
 	
 	// Bringing thr window to life
 	while (window.isOpen()) // run the program as long as the window is open
@@ -73,7 +79,7 @@ int main(void)
 				}
 				else if (game_playing == MANUAL_Scene) // manualScene임
 				{
-
+					game_playing = manualScene.keyInput(event);
 				}
 				else // endScene임 
 				{
@@ -88,11 +94,13 @@ int main(void)
 
 		// scene update() -> clear() -> scene draw() -> display() 순으로 보여지는 화면 업데이트가 이뤄진다. 
 		if(game_playing == GAME_Scene) gameScene.update(game_playing);
+		else if (game_playing == MANUAL_Scene) manualScene.update();
 		
 		window.clear();
 		
 		if (game_playing == GAME_Scene) gameScene.draw(window);
 		else if (game_playing == START_Scene) startScene.draw(window);
+		else if (game_playing == MANUAL_Scene) manualScene.draw(window);
 		
 		window.display();
 	}

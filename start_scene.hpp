@@ -27,16 +27,16 @@ StartScene::StartScene(Font& _font, RenderWindow& _window)
 {
 	select = GAME_START;
 	game_title.setString("Planet Shooter");
-	game_start.setString("Press to Start Game");
-	game_manual.setString("Press to Reading Manual");
-	setText(game_title, _font, 50, Color::White, Color(102,204,102), 5, _window);
-	setText(game_start, _font, 25, Color::White, Color(102,204,102), 5, _window);
-	setText(game_manual, _font, 25, Color::White, Color(102,204,102), 5, _window);
-	game_title.move(0, -50);
-	game_start.move(0, 25);
-	game_manual.move(0, 50);
+	game_start.setString("Press Enter to Start Game");
+	game_manual.setString("Press Enter to Reading Manual");
+	setText(game_title, _font, 100, Color::White, Color(102,204,102), 5, _window);
+	setText(game_start, _font, 50, Color::White, Color(102,204,102), 5, _window);
+	setText(game_manual, _font, 50, Color::White, Color(102,204,102), 5, _window);
+	game_title.move(0, -100);
+	game_start.move(0, 50);
+	game_manual.move(0, 100);
 	
-	setPointBlock(select_point, 5, Color::White, Color(102, 204, 102), 2, _window);
+	setPointBlock(select_point, 10, Color::White, Color(102, 204, 102), 2, _window);
 }
 
 void StartScene::setText(Text& text, Font& _font, int size, Color in_color, Color out_color, int out_thick, RenderWindow& _window)
@@ -59,7 +59,7 @@ void  StartScene::setPointBlock(RectangleShape &rect, int size, Color in_color, 
 	rect.setOutlineColor(out_color);
 	rect.setOutlineThickness(out_thick);
 	rect.setOrigin(rect.getLocalBounds().left, rect.getLocalBounds().top);
-	rect.setPosition(game_start.getPosition().x - 30,
+	rect.setPosition(game_start.getPosition().x - 60,
 									game_start.getPosition().y + game_start.getLocalBounds().height/2.f - rect.getLocalBounds().height/2.f);
 	
 }
@@ -75,14 +75,14 @@ int StartScene::KeyInput(Event &_event)
 	{
 		if (select == GAME_START) {
 			select = MANUAL_SELECT;
-			select_point.move(0, 25);
+			select_point.move(0, 50);
 		}
 	}
 	else if (_event.key.code == Keyboard::Up)
 	{
 		if (select == MANUAL_SELECT) {
 			select = GAME_START;
-			select_point.move(0, -25);
+			select_point.move(0, -50);
 		}
 	}
 	

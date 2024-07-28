@@ -10,28 +10,58 @@ using namespace std;
 using namespace sf;
 
 class NPC_SET{
-private:
-	vector<NPC> npcs;
+protected:
 	Timer& timer;
+	vector<NPC> npcs;
+	int num;
+	bool AllDestroyed();
+	void AgainPlay();
 public:
-	NPC_SET(int num, Texture (&_textures)[3], Timer &_timer);
+	NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer);
 	void update();
 	void draw(RenderWindow&  _window);
 	bool checkHit(FloatRect _rect, int texture_number);
+	void destroyed();
 };
 
-NPC_SET::NPC_SET(int num, Texture (&_textures)[3], Timer &_timer)
-: timer(_timer)
+void NPC_SET::destroyed(){
+	for (auto& _e : npcs) _e.destroyed = true;
+}
+
+NPC_SET::NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer)
+: num(_num), timer(_timer)
 {
 	int inc = 0;
 	for (int i = 0; i < num; i++){
-		NPC npc(50.f+inc, 50.f+inc, i+1, _textures[i%3], i%3);
+		NPC npc(50.f+inc, 50.f+inc, i+1, size, _textures[i%3], i%3);
 		npcs.push_back(npc);
-		inc+=20;	
+		inc+=20;
+	}
+}
+
+bool NPC_SET::AllDestroyed(){
+	bool all_destroyed = true;
+	for (auto& _e : npcs){
+		all_destroyed = _e.destroyed;
+		if (!all_destroyed) break;
+	}
+	return all_destroyed;
+}
+
+void NPC_SET::AgainPlay(){
+	if (AllDestroyed()){
+		int inc = 0;
+		for (auto& _e : npcs) {
+			_e.destroyed = false;
+			Vector2f pos(50.f + inc, 50.f + inc);
+			_e.setPos(pos);
+			inc+=20;
+		}
 	}
 }
 
 void NPC_SET::update(){
+	AgainPlay();
 	for (auto& _e : npcs){
 		_e.update();
 	}
