@@ -5,6 +5,7 @@
 #include <iostream>
 #include "npc.hpp"
 #include "Timer.hpp"
+#include "Point.hpp"
 
 using namespace std;
 using namespace sf;
@@ -12,12 +13,13 @@ using namespace sf;
 class NPC_SET{
 protected:
 	Timer& timer;
+	Point& point;
 	vector<NPC> npcs;
 	int num;
 	bool AllDestroyed();
 	void AgainPlay();
 public:
-	NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer);
+	NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer, Point &_point);
 	void update();
 	void draw(RenderWindow&  _window);
 	bool checkHit(FloatRect _rect, int texture_number);
@@ -28,14 +30,14 @@ void NPC_SET::destroyed(){
 	for (auto& _e : npcs) _e.destroyed = true;
 }
 
-NPC_SET::NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer)
-: num(_num), timer(_timer)
+NPC_SET::NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer, Point &_point)
+: num(_num), timer(_timer), point(_point)
 {
 	int inc = 0;
 	for (int i = 0; i < num; i++){
-		NPC npc(50.f+inc, 50.f+inc, i+1, size, _textures[i%3], i%3);
+		NPC npc(50.f+inc, 50.f+inc, i+2, size, _textures[i%3], i%3);
 		npcs.push_back(npc);
-		inc+=20;
+		inc+=35;
 	}
 }
 
@@ -55,7 +57,7 @@ void NPC_SET::AgainPlay(){
 			_e.destroyed = false;
 			Vector2f pos(50.f + inc, 50.f + inc);
 			_e.setPos(pos);
-			inc+=20;
+			inc+=35;
 		}
 	}
 }
@@ -82,6 +84,7 @@ bool NPC_SET::checkHit(FloatRect _rect, int _texture_number)
       if (_e.destroyed == true) continue; // 이미 부셔저서 그리지는 않지만 그곳에 존재하는 상태이기에
       _e.destroyed = true;
       timer.timeToString(-10); // -10초를 빼줌
+	  point.pointToString(1); // 1점을 올림
       return true;
     }
     else if (_rect.intersects(_e.getArea())){ // 맞았지만, Texture는 동일하지 않은 경우

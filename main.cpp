@@ -8,6 +8,7 @@
 #include "manual_scene_gun.hpp"
 #include "background.hpp"
 #include "Timer.hpp"
+#include "Point.hpp"
 #include "game_scene.hpp"
 #include "start_scene.hpp"
 #include "manual_scene.hpp"
@@ -45,13 +46,14 @@ int main(void)
 	int game_playing  = 0; // 0 - start _scene , 1 - game_scene , 2 - manual_scene, 4 - end_scene
 	
 	Timer timer(silver_font);
+	Point point(silver_font);
 	GUN Player(textures);
 	MANUAL_SCENE_GUN Mplayer(textures);
-	NPC_SET npcCon(15, 15.f, textures, timer);
-	MANUAL_SCENE_NPC_SET MnpcCon(6, 30.f, textures, timer);
+	NPC_SET npcCon(10, 20.f, textures, timer, point);
+	MANUAL_SCENE_NPC_SET MnpcCon(6, 30.f, textures, timer, point);
 	Background bg;
 	
-	GameScene gameScene(timer, Player, npcCon, bg);
+	GameScene gameScene(timer, point, Player, npcCon, bg);
 	StartScene startScene(silver_font, window);
 	ManualScene manualScene(Mplayer, MnpcCon, silver_font, textures, window);
 	

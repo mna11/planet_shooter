@@ -8,26 +8,28 @@
 #include "gun.hpp"
 #include "background.hpp"
 #include "Timer.hpp"
+#include "Point.hpp"
 
 using namespace sf;
 
 class GameScene{ // gameplay scene
 private:
 	Timer& timer;
+	Point& point;
 	GUN& player;
 	NPC_SET& npcCon;
 	Background& bg;
 	
 	bool game_start;
 public:
-	GameScene(Timer& _timer, GUN& _player, NPC_SET& npcCon, Background& _bg);
+	GameScene(Timer& _timer, Point& _point, GUN& _player, NPC_SET& npcCon, Background& _bg);
 	void keyInput(Event& _event); // key 입력 처리 
 	void update(bool _game_start); // 화면 정보 업데이트
 	void draw(RenderWindow& _window); // window에 화면 그리기
 };
 
-GameScene::GameScene(Timer& _timer, GUN& _player, NPC_SET& _npcCon, Background& _bg)
-: timer(_timer), player(_player), npcCon(_npcCon), bg(_bg)
+GameScene::GameScene(Timer& _timer, Point& _point, GUN& _player, NPC_SET& _npcCon, Background& _bg)
+: timer(_timer), point(_point) ,player(_player), npcCon(_npcCon), bg(_bg)
 { }
 
 void GameScene::keyInput(Event& _event) // 좌우 이동 및 발사 기능
@@ -53,6 +55,7 @@ void GameScene::draw(RenderWindow& _window)
 {
 	bg.draw(_window);
 	timer.draw(_window, game_start);
+	point.draw(_window, game_start);
 	npcCon.draw(_window);
 	player.draw(_window);
 }
