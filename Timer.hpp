@@ -1,8 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
-#include <iostream>
+
+#define TIMER_TEXT_X 585 
+#define TIMER_TEXT_Y -20
+#define TIMER_BOX_X 575
+#define TIMER_BOX_Y 5
 
 using namespace sf;
 using namespace std;
@@ -27,7 +30,7 @@ public:
 Timer::Timer(Font& _font)
 : inc_time(0)
 {
-	Vector2f pos = Vector2<float>(585, -20);
+	Vector2f pos = Vector2<float>(TIMER_TEXT_X, TIMER_TEXT_Y);
 	
 	setText(_font, 75, Color::White, Color::Black, 5, pos);
 	setBackground(Color::Black, pos);
@@ -45,8 +48,8 @@ void Timer::setText(Font& _font, int size, Color in_color, Color out_color, int 
 
 void Timer::setBackground(Color color, Vector2f pos)
 {
-	pos.x -= 10;
-	pos.y += 25;
+	pos.x = TIMER_BOX_X;
+	pos.y = TIMER_BOX_Y;
 	
 	back.setSize(Vector2f(60, 60));
 	back.setFillColor(color);
@@ -74,10 +77,9 @@ void Timer::timeToString(int inc = 0)
 		inc_time = 0;
 	}
 	
-	if (seconds < 10)
-		text.setString("0" + to_string(seconds));
-	else
-		text.setString(to_string(seconds));
+	text.setString(to_string(seconds));
+	if (seconds < 10) text.setPosition(TIMER_TEXT_X + 10, TIMER_TEXT_Y);
+	else text.setPosition(TIMER_TEXT_X, TIMER_TEXT_Y);
 }
 
 void Timer::draw(RenderWindow& _window, bool _game_playing)
