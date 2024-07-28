@@ -52,9 +52,9 @@ void GUN::randomBulletTexture() // 총알 10개를 세팅해준다.
   bullet_now = 0;
   
   for(int i = 0; i < 10; i++){
-    bullet_texture_shape[i] = CircleShape(20.f); // Textures의 크기를 정한다 -> 왼쪽에 띄워줄 탄창에 든 행성의 크기. 
+    bullet_texture_shape[i] = CircleShape(19.f); // Textures의 크기를 정한다 -> 왼쪽에 띄워줄 탄창에 든 행성의 크기. 
     bullet_texture_shape[i].setTexture(&textures[texture_number[i] = rand() % 3]); // Textures를 정한다. -> 3개의 Textures 중 랜덤으로 
-    bullet_texture_shape[i].setPosition(10, 0 + 45.f * i); // 옆에 탄창을 띄워준다. 
+    bullet_texture_shape[i].setPosition(10, 40 + 42.f * i); // 옆에 탄창을 띄워준다. 
   }
   current_texture = *(bullet_texture_shape[bullet_now++].getTexture());
 }

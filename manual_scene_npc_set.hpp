@@ -10,14 +10,14 @@ class MANUAL_SCENE_NPC_SET : public NPC_SET {
 private:
     Vector2f base_pos;
 public:
-    MANUAL_SCENE_NPC_SET(int n, int size, Texture (&_textures)[3], Timer& timer);
+    MANUAL_SCENE_NPC_SET(int n, int size, Texture (&_textures)[3], Timer& timer, Point& point);
     void setManualNpc(Vector2f pos);
     void AgainPlay();
     void update();
 };
 
-MANUAL_SCENE_NPC_SET::MANUAL_SCENE_NPC_SET(int n, int size, Texture (&_textures)[3], Timer& timer)
-: NPC_SET(n, size,_textures, timer) { }
+MANUAL_SCENE_NPC_SET::MANUAL_SCENE_NPC_SET(int n, int size, Texture (&_textures)[3], Timer& timer, Point& point)
+: NPC_SET(n, size,_textures, timer, point) { }
 
  void MANUAL_SCENE_NPC_SET::setManualNpc(Vector2f _pos){
     int inc = 0;
