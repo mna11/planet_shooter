@@ -18,17 +18,21 @@ private:
   RectangleShape back;
   Vector2f position;
   int inc_time;
+  int real_time;
+  int last_time;
 public:
   Timer(Font& _font);
   void setText(Font& _font, int size, Color in_color, Color out_color, int out_thick,Vector2f pos);
   void setBackground(Color color, Vector2f pos);
   void clockRestart();
   void timeToString(int inc);
+  int getTime();
+  int getRealTime();
   void draw(RenderWindow& _window, bool _game_start);
 };
 
 Timer::Timer(Font& _font)
-: inc_time(0)
+: inc_time(0), real_time(0), last_time(0)
 {
 	Vector2f pos = Vector2<float>(TIMER_TEXT_X, TIMER_TEXT_Y);
 	
@@ -70,7 +74,12 @@ void Timer::timeToString(int inc = 0)
 	timer = clock.getElapsedTime();
 	seconds = timer.asSeconds();
 	seconds += inc_time;
-	
+
+	if (last_time != (int)timer.asSeconds()){
+		real_time++;
+		last_time = timer.asSeconds();
+	}
+
 	if (seconds < 0) 
 	{
 		clockRestart();
@@ -82,13 +91,25 @@ void Timer::timeToString(int inc = 0)
 	else text.setPosition(TIMER_TEXT_X, TIMER_TEXT_Y);
 }
 
+int Timer::getTime(){
+	int seconds;
+	timer = clock.getElapsedTime();
+	seconds = timer.asSeconds();
+	seconds += inc_time;
+	return seconds;
+}
+
+int Timer::getRealTime()
+{
+	return real_time;
+}
+
 void Timer::draw(RenderWindow& _window, bool _game_playing)
 {  
   _window.draw(back);
   
   if (_game_playing == false) 
   {
-  	text.setString("00");
   	_window.draw(text);
   	return;
   }

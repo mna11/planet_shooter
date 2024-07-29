@@ -7,8 +7,8 @@
 #include "npc_set.hpp"
 #include "gun.hpp"
 #include "background.hpp"
-#include "Timer.hpp"
-#include "Point.hpp"
+#include "timer.hpp"
+#include "point.hpp"
 
 using namespace sf;
 
@@ -25,6 +25,7 @@ public:
 	GameScene(Timer& _timer, Point& _point, GUN& _player, NPC_SET& npcCon, Background& _bg);
 	void keyInput(Event& _event); // key 입력 처리 
 	void update(bool _game_start); // 화면 정보 업데이트
+	bool gameEndCheck(); // 게임이 종료되었는지 체크 (100개의 행성을 부셨거나, 60초가 넘었거나)
 	void draw(RenderWindow& _window); // window에 화면 그리기
 };
 
@@ -49,6 +50,12 @@ void GameScene::update(bool _game_start) // game_start했을 경우에 npcCon, p
 	game_start = _game_start;
 	npcCon.update();
 	player.update(npcCon);
+}
+
+ bool GameScene::gameEndCheck(){
+	int p = point.getPoint();
+	int t = timer.getTime();
+	return ( p == 100 || t >= 60 );
 }
 
 void GameScene::draw(RenderWindow& _window)

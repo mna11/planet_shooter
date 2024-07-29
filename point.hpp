@@ -23,10 +23,11 @@ public:
     void setText(Font& _font, int size, Color in_color, Color out_color, int out_think, Vector2f pos);
     void setBackground(Color color, Vector2f pos);
     void pointToString(int inc);
+    int getPoint();
     void draw(RenderWindow& _window, bool _game_playing);
 };
 
-Point::Point(Font& _font) : font(_font), point(0){
+Point::Point(Font& _font) : font(_font), point(99){
     Vector2f pos(POINT_TEXT_X, POINT_TEXT_Y);
 	setText(_font, 75, Color::White, Color::Black, 5, pos);
 	setBackground(Color::Black, pos);
@@ -60,6 +61,10 @@ void Point::pointToString(int inc = 0){
     else point_text.setPosition(POINT_TEXT_X - 10, POINT_TEXT_Y);
 
     point_text.setString(to_string(point));
+}
+
+int Point::getPoint(){
+    return point;
 }
 
 void Point::draw(RenderWindow& _window, bool _game_playing)

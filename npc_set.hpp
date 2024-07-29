@@ -4,8 +4,8 @@
 #include <vector>
 #include <iostream>
 #include "npc.hpp"
-#include "Timer.hpp"
-#include "Point.hpp"
+#include "timer.hpp"
+#include "point.hpp"
 
 using namespace std;
 using namespace sf;
@@ -90,7 +90,7 @@ bool NPC_SET::checkHit(FloatRect _rect, int _texture_number)
     else if (_rect.intersects(_e.getArea())){ // 맞았지만, Texture는 동일하지 않은 경우
       if (_e.destroyed == true) continue;
       timer.timeToString(5); // 5초를 더 해줌
-  
+		
       return true;
     }
   }
