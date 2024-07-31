@@ -78,6 +78,7 @@ int main(void)
 				{
 					game_playing = startScene.KeyInput(event); // startScene에서 input 값을 처리함.
 					timer.clockRestart(); 
+					point.resetPoint();
 				}
 				else if (game_playing == GAME_Scene) // gameScene임 
 				{
@@ -90,8 +91,8 @@ int main(void)
 				else if (game_playing == END_Scene)// endScene임 
 				{
 					game_playing = endScene.keyInput(event);
-					if (game_playing == GAME_Scene){
-						//setting 
+					if (game_playing == START_Scene){
+						gameScene.gamePlayAgain(); 
 					}
 					else if (game_playing == Quit_Game){
 						window.close();

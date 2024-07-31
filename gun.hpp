@@ -29,7 +29,6 @@ public:
   void fireBullet(); // 총알 발사
   void update(NPC_SET& _npcs); 
   void draw(RenderWindow& _window);
-  void drawOnlyPlayer(RenderWindow& _window);
   void ammoDraw(RenderWindow& _window);
 };
 

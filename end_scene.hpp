@@ -5,7 +5,7 @@
 #include "timer.hpp"
 #include "point.hpp"
 
-#define PLAY_AGAIN 1
+#define PLAY_AGAIN 0
 #define END_Scene 3
 #define QUIT_GAME 4
 

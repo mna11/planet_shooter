@@ -17,13 +17,13 @@ protected:
 	vector<NPC> npcs;
 	int num;
 	bool AllDestroyed();
-	void AgainPlay();
 public:
 	NPC_SET(int _num, int size, Texture (&_textures)[3], Timer &_timer, Point &_point);
 	void update();
 	void draw(RenderWindow&  _window);
 	bool checkHit(FloatRect _rect, int texture_number);
 	void destroyed();
+	void AgainPlay();
 };
 
 void NPC_SET::destroyed(){

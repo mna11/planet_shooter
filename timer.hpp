@@ -65,6 +65,8 @@ void Timer::setBackground(Color color, Vector2f pos)
 void Timer::clockRestart()
 {
   timer = clock.restart();  
+  inc_time = 0;
+  real_time = 0;
 }
 
 void Timer::timeToString(int inc = 0)
@@ -82,8 +84,8 @@ void Timer::timeToString(int inc = 0)
 
 	if (seconds < 0) 
 	{
-		clockRestart();
-		inc_time = 0;
+		timer = clock.restart();  
+  		inc_time = 0;
 	}
 	
 	text.setString(to_string(seconds));

@@ -24,10 +24,11 @@ public:
     void setBackground(Color color, Vector2f pos);
     void pointToString(int inc);
     int getPoint();
+    void resetPoint();
     void draw(RenderWindow& _window, bool _game_playing);
 };
 
-Point::Point(Font& _font) : font(_font), point(99){
+Point::Point(Font& _font) : font(_font), point(0){
     Vector2f pos(POINT_TEXT_X, POINT_TEXT_Y);
 	setText(_font, 75, Color::White, Color::Black, 5, pos);
 	setBackground(Color::Black, pos);
@@ -67,6 +68,9 @@ int Point::getPoint(){
     return point;
 }
 
+void Point::resetPoint(){
+    point = 0;
+}
 void Point::draw(RenderWindow& _window, bool _game_playing)
 {  
   _window.draw(point_text_box);
