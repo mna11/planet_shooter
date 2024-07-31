@@ -6,11 +6,13 @@
 #include "manual_scene_npc_set.hpp"
 #include "gun.hpp"
 #include "manual_scene_gun.hpp"
+
 #include "background.hpp"
 #include "timer.hpp"
 #include "point.hpp"
-#include "game_scene.hpp"
+
 #include "start_scene.hpp"
+#include "game_scene.hpp"
 #include "manual_scene.hpp"
 #include "end_scene.hpp"
  
