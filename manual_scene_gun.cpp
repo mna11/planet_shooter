@@ -19,11 +19,11 @@ void MANUAL_SCENE_GUN::update(MANUAL_SCENE_NPC_SET& _npcs)
 		bullet.move(0.f, -8.f); // 위로 이동
 		if (bullet.getPosition().y < 0.f){ // 총알이 아무것도 안맞고 화면을 넘어감
 				showBullet = false;
-			  changeTexture(); // 다음 총알로 변경
+			  changeTexture(_npcs); // 다음 총알로 변경
 		}
 		else {// 아직 화면을 안넘어감
 			showBullet = !_npcs.checkHit(bullet.getGlobalBounds(), texture_number[bullet_now-1]); // 알맞은 npc를 맞으면 showBullet = false;
-			if (showBullet == false) changeTexture(); // 다음 총알로 변경
+			if (showBullet == false) changeTexture(_npcs); // 다음 총알로 변경
 		}
 	}
 }

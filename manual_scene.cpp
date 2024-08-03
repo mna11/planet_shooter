@@ -6,7 +6,7 @@ ManualScene::ManualScene(MANUAL_SCENE_GUN& _player, MANUAL_SCENE_NPC_SET& _npcCo
     manual_title.setString("MANUAL");
     game_goal.setString("GOAL: Destroy planets by hitting the same\n planet you are firing at!");
     game_control.setString("CONTROL: you can move, LEFT, RIGHT ARROW. \n And fire, SPACE BAR.");
-    game_clear.setString("CLEAR: Destroy 50 planet\n before the timer runs out of 60s\n (destroy same: -10s, contact different: +5s)");
+    game_clear.setString("CLEAR: Destroy 30 planet\n before the timer runs out of 60s\n (destroy same: -10s, contact different: +5s)");
     return_start_scene.setString("[ Press ESC to return Start Scene ]");
 
     setText(manual_title, _font, 100, Color::White, Color(102, 204, 102), 5, _window);

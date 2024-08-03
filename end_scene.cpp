@@ -74,7 +74,7 @@ void EndScene::setting(RenderWindow& _window){
     score_t = timer.getTime();
 	real_t = timer.getRealTime();
 
-    if (p == 100) result.setString("You WIN!!!");
+    if (p == 30) result.setString("You WIN!!!");
     else result.setString("You Lose...");
 	result_point_info.setString("you destroyed planet: " + to_string(p));
 	result_time_info.setString("Take score time: " + to_string(score_t) + "\nTake real time: " + to_string(real_t));

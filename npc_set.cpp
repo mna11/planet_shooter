@@ -49,6 +49,23 @@ void NPC_SET::draw(RenderWindow& _window){
 	}
 }
 
+vector<bool> NPC_SET::remainTexture(){
+	remain_texture.clear();
+	if (AllDestroyed()) {
+		remain_texture.resize(3, true);
+		return remain_texture;
+	}
+	else remain_texture.resize(3, false);
+
+	for (int i = 0; i < 10; i++){
+		if (npcs[i].destroyed == false){
+			remain_texture[i%3] = true;
+		}
+	}
+
+	return remain_texture;
+}
+
 bool NPC_SET::checkHit(FloatRect _rect, int _texture_number)
 {
   for (auto& _e: npcs)

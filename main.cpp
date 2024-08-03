@@ -34,7 +34,7 @@ int main(void)
 	// second argument -> the title of window
 	// third argument -> a style! 
 	// sf::Style::None, Titlebar, Resize(can resized, has maximize button), Close(has close button), Fullscreen(requires a video mode), Default - shortcut(Titlebar, Resize, Close)
-	RenderWindow window(VideoMode(640, 480), "Texture Shooting Game");
+	RenderWindow window(VideoMode(640, 480), "Planet Shooting Game");
 	window.setFramerateLimit(30);
 	
 	//Texture loading

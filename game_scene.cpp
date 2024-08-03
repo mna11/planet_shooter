@@ -25,7 +25,7 @@ void GameScene::update(bool _game_start) // game_start했을 경우에 npcCon, p
  bool GameScene::gameEndCheck(){
 	int p = point.getPoint();
 	int t = timer.getTime();
-	return ( p == 50 || t >= 60 );
+	return ( p == 30 || t >= 60 );
 }
 
 void GameScene::gamePlayAgain(){

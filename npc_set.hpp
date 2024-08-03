@@ -15,6 +15,7 @@ protected:
 	Timer& timer;
 	Point& point;
 	vector<NPC> npcs;
+	vector<bool> remain_texture;
 	int num;
 	bool AllDestroyed();
 public:
@@ -23,5 +24,6 @@ public:
 	void draw(RenderWindow&  _window);
 	bool checkHit(FloatRect _rect, int texture_number);
 	void destroyed();
+	vector<bool> remainTexture();
 	void AgainPlay();
 };
