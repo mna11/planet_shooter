@@ -12,8 +12,8 @@
   아래는 각각, KodeJUN님의 유튜브와 KodeJUN님의 C++, 객체기반 프로그래밍 강좌 플레이리스트이다. 
 
 <div align = "center">
- <a href = "https://www.youtube.com/@kodejun"><img src = "https://img.shields.io/badge/KodeJUN-FF0000?style=flat-square&logo=youtube&logoColor=white" width = 100 />  </a>
- <a href = "https://www.youtube.com/watch?v=Dwoe8yPifG8&list=PLwsSnOYjEpeh-VS56bmTU86xP3eAnbEww"><img src = "https://img.shields.io/badge/KodeJUN- C++ playlist-FF0000?style=flat-square&logo=youtube&logoColor=white" width = 200 />  </a>
+ <a href = "https://www.youtube.com/@kodejun"><img src = "https://img.shields.io/badge/KodeJUN-FF0000?style=flat-square&logo=youtube&logoColor=white" width = 100 /></a>
+ <a href = "https://www.youtube.com/watch?v=Dwoe8yPifG8&list=PLwsSnOYjEpeh-VS56bmTU86xP3eAnbEww"><img src = "https://img.shields.io/badge/KodeJUN- C++ playlist-FF0000?style=flat-square&logo=youtube&logoColor=white" width = 200 /></a>
 </div>
 
 
