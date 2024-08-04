@@ -1,4 +1,4 @@
-sfml-app : main.o background.o end_scene.o game_scene.o gun.o manual_scene_gun.o manual_scene_npc_set.o manual_scene.o npc_set.o npc.o point.o start_scene.o timer.o 
+planet_shooter : main.o background.o end_scene.o game_scene.o gun.o manual_scene_gun.o manual_scene_npc_set.o manual_scene.o npc_set.o npc.o point.o start_scene.o timer.o 
 	g++ main.o background.o end_scene.o game_scene.o gun.o manual_scene_gun.o manual_scene_npc_set.o manual_scene.o npc_set.o npc.o point.o start_scene.o timer.o -o planet_shooter -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o : main.cpp
